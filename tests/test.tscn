@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dufamw6f1f5qu"]
+
+[ext_resource type="Script" path="res://addons/la_buff/nodes/buff_list_2d.gd" id="1_12xox"]
+[ext_resource type="Script" path="res://addons/la_buff/nodes/buff_2d.gd" id="2_bb70v"]
+[ext_resource type="Script" path="res://tests/Effect2D.gd" id="3_wnt4l"]
+
+[node name="Test" type="Node2D"]
+
+[node name="BuffList2D" type="Node2D" parent="."]
+script = ExtResource("1_12xox")
+
+[node name="Buff2D" type="Node2D" parent="BuffList2D"]
+script = ExtResource("2_bb70v")
+
+[node name="Effect2D" type="Node2D" parent="BuffList2D/Buff2D"]
+script = ExtResource("3_wnt4l")
