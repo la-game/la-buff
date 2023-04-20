@@ -1,3 +1,4 @@
+@tool
 @icon("../icons/buff_2d.svg")
 class_name Buff2D
 extends Node2D
@@ -5,7 +6,7 @@ extends Node2D
 
 signal ending
 
-@export var buff_name: String
+@export var buff_name: StringName
 
 @export var stack: bool = true
 
@@ -13,7 +14,7 @@ signal ending
 
 var ended: bool = false:
 	get:
-		if not ended and has_timeouted():
+		if not ended and call("has_timeouted"):
 			ended = true
 		return ended
 	set(should_end):
@@ -21,6 +22,23 @@ var ended: bool = false:
 			ended = true
 			ending.emit()
 			queue_free()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+	var buff = Buff2D.new()
+	var user_script: Resource = get_script()
+	var buff_script: Resource = buff.get_script()
+	
+	buff.free()
+	
+	if user_script.resource_path == buff_script.resource_path:
+		warnings.append("Replace this script for one that extends Buff2D.")
+	
+	if not has_method("has_timeouted"):
+		warnings.append('Missing method "has_timeouted" that returns boolean.')
+	
+	return warnings
 
 
 func calculate(value, status: StringName, operation: StringName):
@@ -33,9 +51,7 @@ func calculate(value, status: StringName, operation: StringName):
 	return value
 
 
-func has_timeouted() -> bool:
-	return true
-
-
-func _get_effects():
-	return get_children().filter(func(c): return c is Effect2D)
+func _get_effects() -> Array[Effect2D]:
+	var effects: Array[Effect2D]
+	effects.assign(get_children().filter(func(c): return c is Effect2D))
+	return effects

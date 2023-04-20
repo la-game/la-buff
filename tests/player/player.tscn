@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvordjxgj6ch7"]
+
+[ext_resource type="Script" path="res://tests/player/player.gd" id="1_m14bt"]
+[ext_resource type="Texture2D" uid="uid://dd4mxapduaeem" path="res://icon.svg" id="1_qwd1i"]
+[ext_resource type="Script" path="res://addons/la_buff/nodes/buff_list_2d.gd" id="3_s0pta"]
+[ext_resource type="Script" path="res://tests/player/run.gd" id="4_dn735"]
+[ext_resource type="Script" path="res://tests/player/boost.gd" id="5_30p2b"]
+[ext_resource type="Script" path="res://tests/player/crouch.gd" id="6_kjne5"]
+[ext_resource type="Script" path="res://tests/player/slow.gd" id="7_maajf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yj46"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_m14bt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qwd1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7yj46")
+
+[node name="Buffs" type="Node2D" parent="."]
+script = ExtResource("3_s0pta")
+
+[node name="Run" type="Node2D" parent="Buffs"]
+script = ExtResource("4_dn735")
+buff_name = &"run"
+
+[node name="Boost" type="Node2D" parent="Buffs/Run"]
+script = ExtResource("5_30p2b")
+operation = &"addition"
+status = &"speed"
+
+[node name="Crouch" type="Node2D" parent="Buffs"]
+script = ExtResource("6_kjne5")
+buff_name = &"crouch"
+
+[node name="Slow" type="Node2D" parent="Buffs/Crouch"]
+script = ExtResource("7_maajf")
+operation = &"multiplication"
+status = &"speed"

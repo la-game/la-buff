@@ -1,3 +1,4 @@
+@tool
 @icon("../icons/buff_list_2d.svg")
 class_name BuffList2D
 extends Node2D
@@ -37,11 +38,15 @@ func _add_buff(buff: Buff2D):
 
 
 func _get_buffs() -> Array[Buff2D]:
-	return get_children().filter(func(c): return c is Buff2D)
+	var buffs: Array[Buff2D]
+	buffs.assign(get_children().filter(func(c): return c is Buff2D))
+	return buffs
 
 
 func _get_buffs_named(buff_name: StringName) -> Array[Buff2D]:
-	return _get_buffs().filter(func(b): return b.buff_name == buff_name)
+	var buffs: Array[Buff2D]
+	buffs.assign(_get_buffs().filter(func(b): return b.buff_name == buff_name))
+	return buffs
 
 
 func _on_child_entered_tree(node: Node):

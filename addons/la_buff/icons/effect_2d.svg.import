@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1aa8qbxss3am"
-path="res://.godot/imported/good_buff_2d.svg-c9de3990daf62502892ae967bb789161.ctex"
+uid="uid://blxmbi10dnpvq"
+path="res://.godot/imported/effect_2d.svg-7717ad09ffb33bd747e620a24edb3fd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/la_buff/icons/good_buff_2d.svg"
-dest_files=["res://.godot/imported/good_buff_2d.svg-c9de3990daf62502892ae967bb789161.ctex"]
+source_file="res://addons/la_buff/icons/effect_2d.svg"
+dest_files=["res://.godot/imported/effect_2d.svg-7717ad09ffb33bd747e620a24edb3fd4.ctex"]
 
 [params]
 
